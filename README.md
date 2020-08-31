@@ -4,8 +4,8 @@ Winning solution for the BEEU (First International Workshop on Bodily Expressed 
 
 ### Preparation
 * Download the [BoLD dataset](https://cydar.ist.psu.edu/emotionchallenge/index.php).
-* Change the directories in "dataset.py" file.
 * Use [https://github.com/yjxiong/temporal-segment-networks](https://github.com/yjxiong/temporal-segment-networks) in order to extract rgb and optical flow for the dataset.
+* Change the directories in "dataset.py" file.
 
 
 ### Training
@@ -28,16 +28,14 @@ Change modality to Flow:
 
 
 ## Citation
-If you use this code for your research, please cite our papers.
+If you use this code for your research, consider citing our paper.
 ```
 @inproceedings{NTUA_BEEU,
   title={Emotion Understanding in Videos Through Body, Context, and Visual-Semantic Embedding Loss},
   author={Filntisis, Panagiotis Paraskevas and Efthymiou, Niki and Potamianos, Gerasimos and Maragos, Petros},
-  booktitle={Computer Vision (ICCV), 2017 IEEE International Conference on},
+  booktitle={ECCV Workshop on Bodily Expressed Emotion Understanding},
   year={2020}
 }
-
-
 ```
 
 ### Acknowlegements

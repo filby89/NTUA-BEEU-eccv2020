@@ -137,7 +137,9 @@ class Trainer(BaseTrainer):
 		metrics.update('loss', loss.item())
 
 		metrics.update('loss_categorical', loss_categorical.item())
-		metrics.update('loss_embed', loss_embed.item())
+		if self.embed:
+			metrics.update('loss_embed', loss_embed.item())
+	
 		output = np.vstack(outputs)
 		target = np.vstack(targets)
 		target[target>=0.5] = 1 # threshold to get binary labels

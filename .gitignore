@@ -5,3 +5,4 @@ __pycache__/
 *.txt
 *.avi
 *.tar
+log/

@@ -9,6 +9,11 @@ import pandas as pd
 import torch
 import torchvision.transforms.functional as tF
 
+def rreplace(s, old, new, occurrence):
+    li = s.rsplit(old, occurrence)
+    return new.join(li)
+
+
 class VideoRecord(object):
     def __init__(self, row):
         self._data = row
@@ -59,7 +64,9 @@ class TSNDataSet(data.Dataset):
 
         header = ["video", "person_id", "min_frame", "max_frame"] + self.categorical_emotions + self.continuous_emotions + self.attributes + ["annotation_confidence"]
         
-        self.df = pd.read_csv(os.path.join(self.bold_path, "annotations/{}_extra.csv".format(mode)))
+        # self.df = pd.read_csv(os.path.join(self.bold_path, "annotations/{}_extra.csv".format(mode)))
+        self.df = pd.read_csv(os.path.join(self.bold_path, "annotations/{}.csv".format(mode)), names=header)
+        self.df["joints_path"] = self.df["video"].apply(rreplace,args=[".mp4",".npy",1])
 
         self.video_list = self.df["video"]
         self.mode = mode
@@ -116,7 +123,6 @@ class TSNDataSet(data.Dataset):
             right = min(joint_max_x+expand_x,image.width)
             top = max(0,joint_min_y-expand_y)
             left = max(0,joint_min_x-expand_x)
-            # print(top, left, bottom, right)
             return tF.crop(image, top, left, bottom-top ,right-left)
 
 

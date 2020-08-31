@@ -2,10 +2,10 @@ from torch import nn
 import torch.nn.functional
 import torch
 from .ops.basic_ops import ConsensusModule, Identity
-# from transforms import *
 from torch.nn.init import normal, constant
 from torch.nn import Parameter
 import torchvision
+import numpy as np
 
 class TSN(nn.Module):
     def __init__(self, num_class, num_segments, modality,
@@ -66,6 +66,9 @@ TSN Configurations:
         self.consensus = ConsensusModule(consensus_type)
         self.consensus_cont = ConsensusModule(consensus_type)
 
+        if self.embed:
+            self.consensus_embed = ConsensusModule(consensus_type)
+
         if not self.before_softmax:
             self.softmax = nn.Softmax()
 
@@ -86,15 +89,15 @@ TSN Configurations:
             else:
                 setattr(self.base_model, self.base_model.last_layer_name, nn.Dropout(p=self.dropout))
 
-        if self.embed:
-            self.embed_fc = nn.Linear(feature_dim,300)
-            normal(self.embed_fc.weight, 0, std)
-            constant(self.embed_fc.bias, 0)
-
         if self.context:
             num_feats = 4096
         else:
             num_feats = 2048
+
+        if self.embed:
+            self.embed_fc = nn.Linear(num_feats,300)
+            normal(self.embed_fc.weight, 0, std)
+            constant(self.embed_fc.bias, 0)
 
         self.new_fc = nn.Linear(num_feats, num_class)
         normal(self.new_fc.weight, 0, std)
