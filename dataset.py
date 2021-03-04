@@ -269,7 +269,7 @@ class TSNDataSet(data.Dataset):
                     p += 1
 
 
-        if self.mode != "test":
+        if not self.test_mode:
             categorical = self.df.iloc[index][self.categorical_emotions]
 
             continuous = self.df.iloc[index][self.continuous_emotions]

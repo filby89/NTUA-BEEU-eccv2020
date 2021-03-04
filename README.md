@@ -27,6 +27,13 @@ Change modality to Flow:
 > python train_tsn.py -c config_tsn.json --modality "Flow" -b 32 --lr 1e-3 --arch resnet101 --workers 4 --num_segments 3 --exp_name "rgb tsn"  -d 0,1,2,3
 
 
+### Pretrained Models
+We also offer weights of an RGB with context model with 0.2213 validation ERS and a Flow model with 0.2157 validation ERS. Their fusion achieves an ERS of 0.2613 on the test set. You can download the pretrained models [here](https://ntuagr-my.sharepoint.com/:f:/g/personal/filby_ntua_gr/EkFAi_QSn9NDsFTylvoAJrQBuvh6eQWkbgTuZcyMWWPR2w?e=xxw6h9). An example on how to use them is shown in test_tsn.py script:
+
+> python test_tsn.py --modality "RGB" --arch resnet101 --workers 4 --context
+> python test_tsn.py --modality "Flow" --arch resnet101 --workers 4 
+
+
 ## Citation
 If you use this code for your research, consider citing our paper.
 ```
