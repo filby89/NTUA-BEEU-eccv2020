@@ -2,6 +2,9 @@
 
 Winning solution for the BEEU (First International Workshop on Bodily Expressed Emotion Understanding) challenge organized at ECCV2020. Please read the accompanied paper for more details. 
 
+<b>\[Update\]</b>
+For an updated version please check [this extension](https://github.com/GiannisPikoulis/FG2021-BoLD) achieving significantly better results with lighter models.
+
 ### Preparation
 * Download the [BoLD dataset](https://cydar.ist.psu.edu/emotionchallenge/index.php).
 * Use [https://github.com/yjxiong/temporal-segment-networks](https://github.com/yjxiong/temporal-segment-networks) in order to extract rgb and optical flow for the dataset.
